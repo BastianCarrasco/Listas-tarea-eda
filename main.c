@@ -46,6 +46,7 @@ int main(){
         FILE * canciones = fopen("canciones.csv","r");
         char linea[300];
         char *token;
+       
 
         switch(op)
         {  
@@ -65,15 +66,77 @@ int main(){
           token=strtok(NULL,"\n");
           strcpy(lista,token);
 
-          
+        
 
+          
+  
           agregarCancion(listaCanciones, nombre, artista, genero,lista, año);
 
         }
         break;
 //////////////////////////////////////////////////////////////
 
-        case 2:
+         case 2: printf("EXPORTAR CANCIONES\n");
+
+        FILE *filePointer ;
+        firstList(listaCanciones);
+        int llave_exportar=0;
+        
+    while(listaCanciones->current->next != NULL){
+      
+    // Get the data to be written in file
+    char dataToBeWritten[100000];    
+
+   
+    strcat(dataToBeWritten,listaCanciones->current->data->nombre);
+    strcat(dataToBeWritten," ");
+    strcat(dataToBeWritten,listaCanciones->current->data->artista);
+    strcat(dataToBeWritten," ");
+    strcat(dataToBeWritten,listaCanciones->current->data->genero);
+    strcat(dataToBeWritten," ");
+    strcat(dataToBeWritten,listaCanciones->current->data->año);
+    strcat(dataToBeWritten," ");
+    strcat(dataToBeWritten,listaCanciones->current->data->lista);
+    strcat(dataToBeWritten,"\n");
+    
+    // Open the existing file canciones2.csv using fopen()
+    // in write mode using "w" attribute
+    filePointer = fopen("canciones2.csv", "w+b") ;
+     
+    // Check if this filePointer is null
+    // which maybe if the file does not exist
+    if ( filePointer == NULL )
+    {
+        printf( "canciones2.csv file failed to open." ) ;
+    }
+    else
+    {
+        if(llave_exportar==0){
+          printf("The file is now opened.\n") ;
+          llave_exportar=1;
+        }
+         
+        // Write the dataToBeWritten into the file
+        if ( strlen ( dataToBeWritten ) > 0 )
+        {
+             
+            fprintf(filePointer,"%s\n",dataToBeWritten);
+            nextList(listaCanciones); 
+        }
+            
+    }
+    
+    }   
+ 
+    
+    fclose(filePointer) ;
+         
+    //    printf("Data successfully written in file canciones2.csv\n");
+    //    printf("The file is now closed.") ;
+    break;
+
+
+
 
         
         
@@ -94,8 +157,8 @@ int main(){
         scanf(" %[^\n]",lista);
         
         
-        agregarCancion(listaCanciones, nombre, artista, genero,lista, año);
-        pushBack(listaCanciones,agregarCancion);
+        agregarCancion(listaCanciones, nombre, artista,genero,año,lista);
+        //total_de_canciones++;
 
         break;
 //////////////////////////////////////////////////////////////
@@ -325,4 +388,4 @@ int main(){
         
 }
     }
-    }
+}
