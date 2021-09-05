@@ -3,8 +3,16 @@
 
 typedef struct Node Node;
 
+typedef struct{
+  char nombre[40];
+  char artista[40];
+  char genero[40];
+  char lista[40];
+  char año[40];
+}Cancion;
+
 struct Node {
-    const void * data;
+    const Cancion * data;
     Node * next;
     Node * prev;
 };
