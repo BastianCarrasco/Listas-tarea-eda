@@ -284,7 +284,7 @@ int main(){
         break;
 
 
-// Se 
+// Se ingresa una variable "llave_generi" la cual nos servira para mostrar por pantalla el resultado de la busqueda, se ingresa la vairable "multi_genero" para las canciones que cumplen con el genero buscado, pero que además tienen otros generos más. Luego con el strcmp se va comparando con las listas hasta ser encontrada, de ser asi se muestran todas las canciones que han sido encontradas con el genero buscado, de no ser asi se pasa a la siguiente lista y se vuelve a bu
 
 //////////////////////////////////////////////////////////////////
         case 7:
