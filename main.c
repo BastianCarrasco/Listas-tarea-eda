@@ -84,27 +84,21 @@ int main(){
         
     while(listaCanciones->current->next != NULL){
       
-    // Get the data to be written in file
-    char dataToBeWritten[100000];    
-
-   
-    strcat(dataToBeWritten,listaCanciones->current->data->nombre);
-    strcat(dataToBeWritten," ");
-    strcat(dataToBeWritten,listaCanciones->current->data->artista);
-    strcat(dataToBeWritten," ");
-    strcat(dataToBeWritten,listaCanciones->current->data->genero);
-    strcat(dataToBeWritten," ");
-    strcat(dataToBeWritten,listaCanciones->current->data->año);
-    strcat(dataToBeWritten," ");
-    strcat(dataToBeWritten,listaCanciones->current->data->lista);
-    strcat(dataToBeWritten,"\n");
+    char archivo[100000];    
+ 
+    strcat(archivo,listaCanciones->current->data->nombre);
+    strcat(archivo," ");
+    strcat(archivo,listaCanciones->current->data->artista);
+    strcat(archivo," ");
+    strcat(archivo,listaCanciones->current->data->genero);
+    strcat(archivo," ");
+    strcat(archivo,listaCanciones->current->data->año);
+    strcat(archivo," ");
+    strcat(archivo,listaCanciones->current->data->lista);
+    strcat(archivo,"\n");
     
-    // Open the existing file canciones2.csv using fopen()
-    // in write mode using "w" attribute
     filePointer = fopen("canciones2.csv", "w+b") ;
-     
-    // Check if this filePointer is null
-    // which maybe if the file does not exist
+
     if ( filePointer == NULL )
     {
         printf( "canciones2.csv file failed to open." ) ;
@@ -115,24 +109,20 @@ int main(){
           printf("The file is now opened.\n") ;
           llave_exportar=1;
         }
-         
-        // Write the dataToBeWritten into the file
-        if ( strlen ( dataToBeWritten ) > 0 )
+
+        if ( strlen ( archivo ) > 0 )
         {
              
-            fprintf(filePointer,"%s\n",dataToBeWritten);
+            fprintf(filePointer,"%s\n",archivo);
             nextList(listaCanciones); 
         }
             
     }
-    
-    }   
- 
+
+    } 
     
     fclose(filePointer) ;
-         
-    //    printf("Data successfully written in file canciones2.csv\n");
-    //    printf("The file is now closed.") ;
+        
     break;
 
 
@@ -155,12 +145,18 @@ int main(){
         scanf(" %[^\n]",año);
         printf("Lista:  ");
         scanf(" %[^\n]",lista);
-        
+      
         
         agregarCancion(listaCanciones, nombre, artista,genero,año,lista);
-        //total_de_canciones++;
+      
 
         break;
+
+        // La funcion comienza solicitando al usuario que vaya ingresando dato por dato de la canción nueva que se quiere agregar, la cual es guardada directamente a la lista de canciones principal con la funcion "agregarCancion"// 
+
+
+
+
 //////////////////////////////////////////////////////////////
 
         case 4:
@@ -193,6 +189,11 @@ int main(){
              
         }
         break;
+
+//se utiliza un while(1) para que recorra sin condicion de termino externo, de tal modo que se repite hasta que llegue a la linea "break;", dentro del ciclo se utiliza la funcion strcmp la cual compara todas las canciones de la lista completa hasta encontrar alguna que sea identica, de ser encontrada la función comenzará a mostrar por pantalla las caracteristicas de la cancion buscada, de no ser asi, se busca en la siguiente lista, si la canción no es encontrada en ninguna lista, se termina la función//
+
+
+
 ////////////////////////////////////////////////////////////
         case 5:
 
@@ -228,6 +229,12 @@ int main(){
              
         }
         break;
+
+// El codigo parte posicionandose en la primera lista con la funcion "firstlist", luego se procede a preguntar al usuario el nombre del artista que se quiere buscar. Luego de esto utilizamos la funcion "strcmp" para comparar los nombres de los artistas por medio de las listas, de no ser encontrado se pasa a la siguiente lista y se vuelve a comparar, de no ser encontrado por ninguna lista, se terminará la funcion. Además hay una condicional llamada "llave", la cual marca si fue encontrado el artista buscado o no, de no ser asi, procederá a mostrar un mensaje por pantalla//
+
+
+
+
 /////////////////////////////////////////////////////////////////
 
          case 6:
@@ -277,6 +284,7 @@ int main(){
         break;
 
 
+// 
 
 //////////////////////////////////////////////////////////////////
         case 7:
